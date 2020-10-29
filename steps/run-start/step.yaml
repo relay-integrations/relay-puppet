@@ -1,0 +1,37 @@
+apiVersion: integration/v1
+kind: Step
+name: run-start
+version: 1
+summary: Start a Puppet run
+
+description: |
+  This step requests a new Puppet run using the Relay API. It does not wait for
+  the run to complete. Use the `run-wait` step if you need to wait on the run.
+
+build:
+  apiVersion: build/v1
+  kind: Docker
+
+publish:
+  repository: relaysh/puppet-step-run-start
+
+examples:
+- summary: Request a new Puppet run
+  apiVersion: v1
+  kind: Step
+  name: start-puppet-run
+  image: relaysh/puppet-step-run-start
+  spec:
+    connection: !Connection {type: puppet, name: my-pe-connection}
+    environment: !Parameter puppetEnvironment
+    scope:
+      node_group: !Parameter puppetNodeGroup
+    debug: true
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
+  outputs:
+    source: file
+    file: outputs.schema.json

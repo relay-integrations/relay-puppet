@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "jobID": {
+      "type": "string",
+      "description": "If using Puppet Enterprise, the orchestrator job ID for the Puppet run"
+    },
+    "outcome": {
+      "type": "string",
+      "description": "The outcome of the Puppet run as provided by the Puppet agent"
+    }
+  }
+}

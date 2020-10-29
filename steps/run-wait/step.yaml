@@ -1,0 +1,34 @@
+apiVersion: integration/v1
+kind: Step
+name: run-wait
+version: 1
+summary: Wait for a Puppet run to complete
+
+description: |
+  This step waits until a Puppet run initiated by the `run-start` step
+  completes.
+
+build:
+  apiVersion: build/v1
+  kind: Docker
+
+publish:
+  repository: relaysh/puppet-step-run-wait
+
+examples:
+- summary: Wait for a Puppet run
+  apiVersion: v1
+  kind: Step
+  name: wait-for-puppet-run
+  image: relaysh/puppet-step-run-wait
+  spec:
+    connection: !Connection {type: puppet, name: my-pe-connection}
+    id: !Output [start-puppet-run, id]
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
+  outputs:
+    source: file
+    file: outputs.schema.json

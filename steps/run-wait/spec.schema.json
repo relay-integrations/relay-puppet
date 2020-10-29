@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "connection": {
+      "type": "object",
+      "x-relay-connectionType": "puppet",
+      "properties": {
+        "relayAPIURL": {
+          "type": "string",
+          "description": "The base URL to the Relay API"
+        },
+        "token": {
+          "type": "string",
+          "description": "The secret token to authenticate Puppet run requests"
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "description": "The Relay API identifier for the Puppet run"
+    }
+  },
+  "required": [
+    "connection",
+    "id"
+  ]
+}

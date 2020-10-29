@@ -1,0 +1,65 @@
+# Step metadata example - full description at:
+# https://github.com/puppetlabs/relay-rfcs/blob/master/content/0006-integration-layout/rfc.md#common-metadata
+apiVersion: integration/v1
+kind: Step
+name: template
+version: 1
+summary: Step template
+
+description: |
+  This is a template for a simple step.
+
+build:
+  apiVersion: build/v1
+  kind: Docker
+
+publish:
+  repository: myregistryuser/step-template
+
+# optional list of examples; each one can be a Step or a complete Workflow
+examples:
+- summary: An example workflow using this step
+  apiVersion: v1
+  kind: Workflow
+  parameters:
+    message:
+      description: The message to emit
+      default: Hello, world
+  steps:
+    image: relaysh/template
+    spec:
+      message: !Parameter message
+
+schemas:
+  spec:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      connection:
+        type: object
+        x-relay-connectionType: fooinc
+        description: A Foo Inc. connection
+        properties:
+          token:
+            type: string
+            description: A Foo API token
+        required:
+        - token
+      message:
+        type: string
+        description: The message to emit from the step
+   # alternately, source an external json file
+   # spec:
+   #   source: file
+   #   file: spec.schema.json
+ outputs:
+   $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      output:
+        type: string
+        description: The message that would be emitted
+   # external files are also supported for outputs
+   # spec:
+   #   source: file
+   #   file: outputs.schema.json

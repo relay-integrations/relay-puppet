@@ -1,0 +1,31 @@
+# For a full description of workflow syntax, see
+# https://relay.sh/docs/reference/relay-workflows/
+
+apiVersion: v1
+summary: Foo the bar and back
+description: This workflow looks at all of the bars and foos with them
+homepage: https://github.com/puppetlabs/relay-workflows/tree/master/foo-bar
+tags:
+  - example
+
+parameters:
+  message:
+    description: "Something to output from the template step"
+    default: "Workflow default"
+  webhook:
+    description: "The contents of the webhook handled by the template trigger"
+
+triggers:
+  name: template-trigger
+  source: webhook
+  image: myregistryuser/foobar-trigger-template
+  binding:
+    parameters:
+      webhook: !Data webhook
+
+steps:
+  name: template-step
+  image: myregistryuser/foobar-step-template
+  spec:
+    parameters:
+      message: !Parameter message

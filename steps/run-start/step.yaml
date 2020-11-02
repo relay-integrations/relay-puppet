@@ -17,16 +17,17 @@ publish:
 
 examples:
 - summary: Request a new Puppet run
-  apiVersion: v1
-  kind: Step
-  name: start-puppet-run
-  image: relaysh/puppet-step-run-start
-  spec:
-    connection: !Connection {type: puppet, name: my-pe-connection}
-    environment: !Parameter puppetEnvironment
-    scope:
-      node_group: !Parameter puppetNodeGroup
-    debug: true
+  content:
+    apiVersion: v1
+    kind: Step
+    name: start-puppet-run
+    image: relaysh/puppet-step-run-start
+    spec:
+      connection: !Connection {type: puppet, name: my-pe-connection}
+      environment: !Parameter puppetEnvironment
+      scope:
+        node_group: !Parameter puppetNodeGroup
+      debug: true
 
 schemas:
   spec:

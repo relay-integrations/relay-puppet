@@ -17,13 +17,14 @@ publish:
 
 examples:
 - summary: Wait for a Puppet run
-  apiVersion: v1
-  kind: Step
-  name: wait-for-puppet-run
-  image: relaysh/puppet-step-run-wait
-  spec:
-    connection: !Connection {type: puppet, name: my-pe-connection}
-    id: !Output [start-puppet-run, id]
+  content:
+    apiVersion: v1
+    kind: Step
+    name: wait-for-puppet-run
+    image: relaysh/puppet-step-run-wait
+    spec:
+      connection: !Connection {type: puppet, name: my-pe-connection}
+      id: !Output [start-puppet-run, id]
 
 schemas:
   spec:

@@ -10,7 +10,7 @@ source: https://github.com/relay-integrations/relay-puppet
 
 description: |
   This integration works with the native Puppet connection and the Relay Puppet
-  module to connection your on-premise Puppet installs with Relay.
+  module to connect your on-premise Puppet installs with Relay.
 
 owner:
   name: Puppet, Inc.

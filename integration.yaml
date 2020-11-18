@@ -18,7 +18,4 @@ owner:
   url: https://puppet.com
 
 tags:
-- on-prem
-- pe
-- puppet
 - configuration

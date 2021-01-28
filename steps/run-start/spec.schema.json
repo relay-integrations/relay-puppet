@@ -66,10 +66,15 @@
     },
     "noop": {
       "type": "boolean",
-      "description": "Whether this should be a dry run",
+      "description": "Whether this should be a dry run; use this OR no_noop, not both",
       "default": false
     },
-    "debug": {
+    "no_noop": {
+      "type": "boolean",
+      "description": "Whether this should override a hard-coded noop flag; use this OR noop",
+      "default": false
+    },
+     "debug": {
       "type": "boolean",
       "description": "Whether the `debug` agent flag should be used for this run",
       "default": false

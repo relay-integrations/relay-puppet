@@ -24,6 +24,7 @@ data = {
     'environment': relay.get(D.environment),
     'scope': relay.get(D.scope),
     'noop': get_or_default(D.noop, False),
+    'no_noop': get_or_default(D.no_noop, False),
     'debug': get_or_default(D.debug, False),
     'trace': get_or_default(D.trace, False),
     'evaltrace': get_or_default(D.evaltrace, False),

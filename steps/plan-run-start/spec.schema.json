@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "connection": {
+      "type": "object",
+      "x-relay-connectionType": "puppet",
+      "properties": {
+        "relayAPIURL": {
+          "type": "string",
+          "description": "The base URL to the Relay API"
+        },
+        "token": {
+          "type": "string",
+          "description": "The secret token to authenticate Puppet run requests"
+        }
+      }
+    },
+    "environment": {
+      "type": "string",
+      "description": "The Puppet environment to use for the run"
+    },
+    "name": {
+      "type": "string",
+      "description": "The qualified name of the plan to run"
+    },
+    "params": {
+      "type": "object",
+      "description": "The plan's parameters"
+    }
+  },
+  "required": [
+    "connection",
+    "name"
+  ]
+}

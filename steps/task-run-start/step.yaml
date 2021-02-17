@@ -1,0 +1,39 @@
+apiVersion: integration/v1
+kind: Step
+name: task-run-start
+version: 1
+summary: Start a Puppet/Bolt task run
+
+description: |
+  This step requests a new task run using the Relay API. It does not wait for
+  the run to complete. Use the `run-wait` step if you need to wait on the run.
+
+build:
+  apiVersion: build/v1
+  kind: Docker
+
+publish:
+  repository: relaysh/puppet-step-task-run-start
+
+examples:
+- summary: Request a new task run
+  content:
+    apiVersion: v1
+    kind: Step
+    name: start-task-run
+    image: relaysh/puppet-step-task-run-start
+    spec:
+      connection: !Connection {type: puppet, name: my-pe-connection}
+      environment: !Parameter puppetEnvironment
+      name: 'aws::create_instance'
+      params:
+        image_id: ami-0928f4202481dfdf6
+        region: us-west-1
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
+  outputs:
+    source: file
+    file: outputs.schema.json

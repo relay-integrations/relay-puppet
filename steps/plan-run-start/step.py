@@ -21,14 +21,10 @@ def get_or_default(path, default=None):
         raise
 
 data = {
-    'type': 'run',
+    'type': 'plan-run',
     'environment': get_or_default(D.environment),
-    'scope': relay.get(D.scope),
-    'noop': get_or_default(D.noop, False),
-    'no_noop': get_or_default(D.no_noop, False),
-    'debug': get_or_default(D.debug, False),
-    'trace': get_or_default(D.trace, False),
-    'evaltrace': get_or_default(D.evaltrace, False),
+    'name': relay.get(D.name),
+    'params': get_or_default(D.params, {}),
 }
 
 headers = {'Authorization': f'Bearer {relay_api_token}'}
@@ -44,7 +40,7 @@ run = r.json()
 
 relay.outputs.set('id', run['id'])
 
-logging.info('Waiting for Puppet run {} to start...'.format(run['id']))
+logging.info('Waiting for plan run {} to start...'.format(run['id']))
 
 while run['state']['status'] == 'pending':
     time.sleep(5)
@@ -54,7 +50,7 @@ while run['state']['status'] == 'pending':
 
     run = r.json()
 
-logging.info('Run dispatched to Puppet server successfully!')
+logging.info('Plan run dispatched to Puppet server successfully!')
 
 if run['state'].get('job_id'):
     relay.outputs.set('jobID', run['state']['job_id'])

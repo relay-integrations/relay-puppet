@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "connection": {
+      "type": "object",
+      "x-relay-connectionType": "puppet",
+      "properties": {
+        "relayAPIURL": {
+          "type": "string",
+          "description": "The base URL to the Relay API"
+        },
+        "token": {
+          "type": "string",
+          "description": "The secret token to authenticate Puppet run requests"
+        }
+      }
+    },
+    "environment": {
+      "type": "string",
+      "description": "The Puppet environment to use for the run"
+    },
+    "scope": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "description": "The list of node names to target",
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          },
+          "required": ["nodes"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "query": {
+              "description": "A PuppetDB or PQL query to use to discover nodes"
+            }
+          },
+          "required": ["query"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "node_group": {
+              "description": "The node group ID",
+              "type": "string"
+            }
+          },
+          "required": ["node_group"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "application": {
+              "description": "An application to deploy",
+              "type": "string"
+            }
+          },
+          "required": ["application"]
+        }
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The qualified name of the task to run"
+    },
+    "params": {
+      "type": "object",
+      "description": "The task's parameters"
+    },
+    "noop": {
+      "type": "boolean",
+      "description": "Whether this should be a dry run",
+      "default": false
+    },
+    "targets": {
+      "type": "array",
+      "description": "An array of Bolt-compatible target specifications to use to connect to nodes",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "connection",
+    "scope",
+    "name"
+  ]
+}

@@ -5,7 +5,7 @@ version: 1
 summary: Wait for a Puppet run to complete
 
 description: |
-  This step waits until a Puppet run initiated by the `run-start` step
+  Waits until a Puppet run initiated by the `run-start` step
   completes.
 
 build:

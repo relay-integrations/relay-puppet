@@ -5,7 +5,7 @@ version: 1
 summary: Start a Puppet/Bolt plan run
 
 description: |
-  This step requests a new plan run using the Relay API. It does not wait for
+  Requests a new plan run using the Relay API. It does not wait for
   the run to complete. Use the `run-wait` step if you need to wait on the run.
 
 build:

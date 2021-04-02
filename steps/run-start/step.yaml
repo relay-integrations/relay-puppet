@@ -5,7 +5,7 @@ version: 1
 summary: Start a Puppet run
 
 description: |
-  This step requests a new Puppet run using the Relay API. It does not wait for
+  Requests a new Puppet run using the Relay API. It does not wait for
   the run to complete. Use the `run-wait` step if you need to wait on the run.
 
 build:

@@ -35,6 +35,9 @@ while True:
     if run['state'].get('outcome'):
         relay.outputs.set('outcome', run['state']['outcome'])
 
+    if run['state'].get('run_results'):
+        relay.outputs.set('results', run['state']['run_results'])
+
     logging.info('Run complete with outcome {}'.format(run['state'].get('outcome', '(unknown)')))
 
     break

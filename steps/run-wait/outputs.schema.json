@@ -9,6 +9,10 @@
     "outcome": {
       "type": "string",
       "description": "The outcome of the Puppet run as provided by the Puppet agent"
+    },
+    "results": {
+      "type": "string",
+      "description": "The results of the Puppet task or plan run as provided by the Puppet agent"
     }
   }
 }
